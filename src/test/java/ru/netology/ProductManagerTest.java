@@ -11,7 +11,21 @@ public class ProductManagerTest {
     Product product4 = new Smartphone(4, "Sony", 30_000, "Japan");
 
     @Test
-    void shouldAddFindProducts() {
+    void shouldFind0Products() {
+
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+
+        Product[] actual = manager.searchBy("qwe");
+        Product[] expected = {};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldAddFind1Products() {
         manager.add(product1);
         manager.add(product2);
         manager.add(product3);
@@ -23,4 +37,16 @@ public class ProductManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+    @Test
+    void shouldFind3Products() {
+        manager.add(product1);
+        manager.add(product2);
+        manager.add(product3);
+        manager.add(product4);
+
+        Product[] actual = manager.searchBy("on");
+        Product[] expected = {product2, product3, product4};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
 }
